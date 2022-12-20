@@ -1,6 +1,7 @@
 from sklearn import datasets
 import matplotlib.pyplot as plt
 
+
 def practice_three_one():
     """
         https://scikit-learn.org/stable/datasets/toy_dataset.html#iris-plants-dataset
@@ -14,17 +15,22 @@ def practice_three_one():
     # Task 1: Use scikit-learn to load iris dataset.
     iris = datasets.load_iris()
 
+    # Task 2: Print out the number of features & number of examples in the iris dataset
+
     """
     feature - характеризующая черта предмета
     example - любой предмет
-    class - подвид или группа, на которые делится предмет
     """
 
-    # Task 2: Print out the number of features & number of examples in the iris dataset
     print('Number of features ' + str(len(iris.feature_names)))
     print('Number of examples ' + str(len(iris.target)))
 
     # Task 3: Print out iris dataset classes
+
+    """
+    class - подвид или группа, на которые делится предмет
+    """
+
     print('Number of classes ' + str(len(iris.target_names)))
 
     # Task 4: Display Sepal width and Sepal length features using matplotlib library.
@@ -46,7 +52,11 @@ def practice_three_one():
 
     # Task 5: Split your dataset randomly in half: training and testing. Print out number of
     # examples in your training and testing sets
-    
+
+
+def practice_three_two():
+    print('Later')
+
 
 def main():
     practice_three_one()
