@@ -1,17 +1,15 @@
 from sklearn import datasets
 import matplotlib.pyplot as plt
 
-
-def main():
-
+def practice_three_one():
     """
-    https://scikit-learn.org/stable/datasets/toy_dataset.html#iris-plants-dataset
-    Множество Ирисов Фишера
-    1. длина наружной доли околоцветника (sepal length)
-    2. ширина наружной доли околоцветника (sepal width)
-    3. длина внутренней доли околоцветника (petal length)
-    4. ширина внутренней доли околоцветника (petal width)
-    """
+        https://scikit-learn.org/stable/datasets/toy_dataset.html#iris-plants-dataset
+        Множество Ирисов Фишера
+        1. длина наружной доли околоцветника (sepal length)
+        2. ширина наружной доли околоцветника (sepal width)
+        3. длина внутренней доли околоцветника (petal length)
+        4. ширина внутренней доли околоцветника (petal width)
+        """
 
     # Task 1: Use scikit-learn to load iris dataset.
     iris = datasets.load_iris()
@@ -21,6 +19,7 @@ def main():
     example - любой предмет
     class - подвид или группа, на которые делится предмет
     """
+
     # Task 2: Print out the number of features & number of examples in the iris dataset
     print('Number of features ' + str(len(iris.feature_names)))
     print('Number of examples ' + str(len(iris.target)))
@@ -44,6 +43,13 @@ def main():
     plt.ylabel(iris.feature_names[1])
     plt.title('Visualization of Dataset')
     plt.show()
+
+    # Task 5: Split your dataset randomly in half: training and testing. Print out number of
+    # examples in your training and testing sets
+    
+
+def main():
+    practice_three_one()
 
 
 if __name__ == '__main__':
