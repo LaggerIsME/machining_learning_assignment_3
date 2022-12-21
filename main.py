@@ -1,4 +1,5 @@
 from sklearn import datasets
+from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
 
@@ -52,6 +53,22 @@ def practice_three_one():
 
     # Task 5: Split your dataset randomly in half: training and testing. Print out number of
     # examples in your training and testing sets
+    sepal_length_train, \
+        sepal_length_test, \
+        sepal_width_train, \
+        sepal_width_test = train_test_split(sepal_length, sepal_width, test_size=20)
+    print('sepal_length_train: ')
+    print(sepal_length_train)
+    print('')
+    print(' sepal_length_test: ')
+    print(sepal_length_test)
+    print('')
+    print('sepal_width_train: ')
+    print(sepal_width_train)
+    print('')
+    print(' sepal_width_test: ')
+    print(sepal_width_test)
+    print('')
 
 
 def practice_three_two():
