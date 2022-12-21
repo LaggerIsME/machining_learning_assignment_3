@@ -1,6 +1,7 @@
-from sklearn import datasets
+from sklearn import datasets, linear_model
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 def practice_three_one():
@@ -56,7 +57,7 @@ def practice_three_one():
     sepal_length_train, \
         sepal_length_test, \
         sepal_width_train, \
-        sepal_width_test = train_test_split(sepal_length, sepal_width, test_size=20)
+        sepal_width_test = train_test_split(sepal_length, sepal_width, test_size=0.2)
     print('sepal_length_train: ')
     print(sepal_length_train)
     print('')
@@ -72,11 +73,20 @@ def practice_three_one():
 
 
 def practice_three_two():
-    print('Later')
+    df = pd.read_excel('price1.xlsx')
+    plt.scatter(df.area, df.price, color='red', marker='^')
+    plt.xlabel('площадь (кв.м.)')
+    plt.ylabel('стоимость (млн.руб)')
+    # регрессионная модель
+    reg = linear_model.LinearRegression()
+    reg.fit(df[['area']], df.price)
+    plt.plot(df.area, reg.predict(df[['area']]))
+    plt.show()
 
 
 def main():
-    practice_three_one()
+    # practice_three_one()
+    practice_three_two()
 
 
 if __name__ == '__main__':
