@@ -85,10 +85,9 @@ def practice_three_two():
 
 
 def main():
-    # practice_three_one()
+    practice_three_one()
     practice_three_two()
 
 
 if __name__ == '__main__':
     main()
-
