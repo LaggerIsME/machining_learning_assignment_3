@@ -1,7 +1,10 @@
-from sklearn import datasets, linear_model
+from sklearn import datasets, linear_model, preprocessing
+from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import pandas as pd
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
 
 
 def practice_three_one():
@@ -57,7 +60,37 @@ def practice_three_one():
     sepal_length_train, \
         sepal_length_test, \
         sepal_width_train, \
-        sepal_width_test = train_test_split(sepal_length, sepal_width, test_size=0.2)
+        sepal_width_test = train_test_split(sepal_length, sepal_width, train_size=8, test_size=2)
+    formatter = plt.FuncFormatter(lambda i, *args: iris.target_names[int(i)])
+
+    plt.scatter(sepal_length_train, sepal_width_train)
+    plt.colorbar(ticks=[0, 1, 2], format=formatter)
+    # Sepal Length
+    plt.xlabel(iris.feature_names[0])
+    # Sepal Width
+    plt.ylabel(iris.feature_names[1])
+    plt.title('Visualization of Dataset')
+    # Стандартизирую данные
+    scaler = StandardScaler()
+    scaler.fit(sepal_length_train.reshape(-1, 1))
+
+    sepal_length_train = scaler.transform(sepal_length_train.reshape(-1, 1))
+    sepal_length_test = scaler.transform(sepal_length_test.reshape(-1, 1))
+
+    # Преобразую Continious в Categorical
+    lab = preprocessing.LabelEncoder()
+
+    sepal_width_train = lab.fit_transform(sepal_width_train)
+    sepal_width_test = lab.fit_transform(sepal_width_test)
+
+    # Классифицирую данные для тренировки
+    classifier = KNeighborsClassifier(n_neighbors=2)
+    classifier.fit(sepal_length_train, sepal_width_train)
+
+    # предугадать ширину с помощью длины
+    sepal_width_predict = classifier.predict(sepal_length_test)
+    plt.show()
+   # print(confusion_matrix(sepal_width_test, sepal_width_predict))
     print('sepal_length_train: ')
     print(sepal_length_train)
     print('')
@@ -74,7 +107,7 @@ def practice_three_one():
 
 def practice_three_two():
     df = pd.read_excel('price1.xlsx')
-    plt.scatter(df.area, df.price, color='red', marker='^')
+    plt.scatter( df['area'], df['price'], color='red', marker='^')
     plt.xlabel('площадь (кв.м.)')
     plt.ylabel('стоимость (млн.руб)')
     # регрессионная модель
@@ -82,7 +115,12 @@ def practice_three_two():
     reg.fit(df[['area']], df.price)
     plt.plot(df.area, reg.predict(df[['area']]))
     plt.show()
-
+    # предсказывание
+    pred = pd.read_excel('prediction_price.xlsx')
+    pred.head(3)
+    p = reg.predict(pred)
+    pred['predicted prices'] = p
+    print("Процент успеха: " + str(reg.score(df[['area']], df.price)))
 
 def main():
     practice_three_one()
